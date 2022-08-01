@@ -1,0 +1,48 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+}
+
+hr {
+    width: 494px;
+    border: 3px solid black;
+}
+
+h1 {
+    margin-bottom: 0;
+}
+
+h4 {
+    margin-top: 0;
+}
+
+#board {
+    width: 450px;
+    height: 450px;
+    background-color: chocolate;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tile {
+    width: 148px;
+    height: 148px;
+    font-size: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.horizontal-line {
+    border-bottom:  3px solid black;
+}
+
+.vertical-line {
+    border-right: 3px solid black;
+}
+
+.winner {
+    background-color: darkgrey;
+    color: crimson;
+}
