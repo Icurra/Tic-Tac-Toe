@@ -1,48 +1,26 @@
-body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+html {
+  background: radial-gradient(rgb(10, 88, 52) 60%, rgb(6, 74, 21) 100%);
+  height: 100%
+}
+
+.square {
+    width: 75px;
+    height: 75px;
+    border: 2px solid;
+    box-shadow: 0 0 0 2px;
+    line-height: 75px;
+    font-size: 50px;
+    cursor: pointer;
+    background-color: rgba(190, 71, 19, 0.816);
+  }
+  #gameContainer {
+    font-family: "Permanent Marker", cursive;
     text-align: center;
-}
-
-hr {
-    width: 494px;
-    border: 3px solid black;
-}
-
-h1 {
-    margin-bottom: 0;
-}
-
-h4 {
-    margin-top: 0;
-}
-
-#board {
-    width: 450px;
-    height: 450px;
-    background-color: chocolate;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.tile {
-    width: 148px;
-    height: 148px;
-    font-size: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.horizontal-line {
-    border-bottom:  3px solid black;
-}
-
-.vertical-line {
-    border-right: 3px solid black;
-}
-
-.winner {
-    background-color: darkgrey;
-    color: crimson;
-}
+  }
+  #cellContainer {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    width: 225px;
+    margin: auto;
+  }
+  

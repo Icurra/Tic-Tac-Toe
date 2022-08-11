@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tic-Tac-Toe</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="app.js"></script>
-</head>
-<body>
-    <h1>Tic Tac Toe</h1>
-    <br>
-    <h4>(Git Dat Repo!)</h4>
-    <hr>
-    <div id="board"></div>
-    <div id = '0-0'></div>
-    <div id = '0-0'></div>
-    <div id = '0-0'></div>
-    <div id = '0-0'></div>
-    <div id = '0-0'></div>
-    <div id = '0-0'></div>
-    <div id = '0-0'></div>
-    <div id = '0-0'></div>
-    <div id = '0-0'></div>
-</body>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div id="gameContainer">
+      <h1>Tic Tac Toe</h1>
+      <div>
+        <form>
+            <label><input type="text" id="p1" required placeholder="Player One"></label>
+            <label><input type="text" id="p2" required placeholder="Player Two"></label>
+            <br>
+            <input type="submit" value="Begin Game" id="begin">
+        </form>
+        <br>
+      </div>
+      <div id="cellContainer">
+        <div id ="0cell" class="square"></div>
+        <div id ="1cell" class="square"></div>
+        <div id ="2cell" class="square"></div>
+        <div id ="3cell" class="square"></div>
+        <div id ="4cell" class="square"></div>
+        <div id ="5cell" class="square"></div>
+        <div id ="6cell" class="square"></div>
+        <div id ="7cell" class="square"></div>
+        <div id ="8cell" class="square"></div>
+      </div>
+      <br>
+      <button onclick="window.location.reload();" id="restartBtn">Restart</button>
+    </div>
+  </body>
 </html>

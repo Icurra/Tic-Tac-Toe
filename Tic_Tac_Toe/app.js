@@ -1,125 +1,97 @@
-let board;
-const playerX = "X";
-const playerO = "O";
-let currPlayer = playerO;
-let gameOver = false;
+const begin = document.querySelector("#begin");
 
-window.onload = function () {
-  setGame();
+begin.addEventListener("click", initialize);
+
+const board = new Array(9).fill("");
+
+const players = {
+  X: {
+    print: "X",
+    name: null,
+  },
+  O: {
+    print: "O",
+    name: null,
+  },
 };
-function setGame() {
-  board = [
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-  ];
-  for (let r = 0; r < 3; r++) {
-    for (let c = 0; c < 3; c++) {
-      // div id = '0-0'></div>
-      let tile = document.createElement("div");
-      tile.id = r.toString() + "-" + c.toString();
-      tile.classList.add("tile");
-      if (r == 0 || r == 1) {
-        tile.classList.add("horizontal-line");
-      }
-      if (c == 0 || c == 1) {
-        tile.classList.add("vertical-line");
-      }
-      tile.addEventListener("click", setTile);
-      document.getElementById("board").append(tile);
-    }
+let currPlayer = "X"
+
+function initialize(event) {
+
+  event.preventDefault();
+
+let p1Turn = document.querySelector("#p1");
+let p2Turn = document.querySelector("#p2");
+players.X.name = p1Turn.value;
+players.O.name = p2Turn.value;
+
+p1Turn.readOnly = true;
+  p2Turn.readOnly = true;
+
+  event.target.disable = true;
+
+  checkReady()
+
+  function checkReady() {
+    if (p1Turn.value != "" && p1Turn.value != "") {
+      p1Turn.hidden = true;
+      p2Turn.hidden = true
+      begin.hidden = true;
+    } 
   }
+  
+
+
+const cells = document.querySelectorAll(".square");
+
+  for (let square of cells) {
+    square.addEventListener("click", turn);
+  }
+
+  turn()
 }
 
-function setTile() {
-  if (gameOver) {
-    return;
-  }
+function turn(event) {
+console.log(event)
+let selection = event.target;
 
-  let coords = this.id.split("-");
-  let r = parseInt(coords[0]);
-  let c = parseInt(coords[1]);
+if (selection.textContent) {
+  return alert("That cell is taken!")
+}
 
-  if (board[r][c] != "") {
-    return;
-  }
+selection.textContent = players[currPlayer].print;
 
-  board[r][c] = currPlayer;
-  this.innerText = currPlayer;
+let cellNum = parseInt(selection.id);
+board[cellNum] = players[currPlayer].print;
 
-  if (currPlayer == playerO) {
-    currPlayer = playerX;
-  } else {
-    currPlayer = playerO;
-  }
-  checkWinner();
 
-  function checkWinner() {
-    //horizontal
-    for (let r = 0; r < 3; r++) {
-      if (
-        board[r][0] == board[r][1] &&
-        board[r][1] == board[r][2] &&
-        board[r][0] != ""
-      ) {
-        for (let i = 0; i < 3; i++) {
-          let tile = document.getElementById(r.toString() + "-" + i.toString());
-          tile.classList.add("winner");
-        }
-        gameOver = true;
-        return;
-      }
-    }
+checkWin()
 
-    //vertical
-    for (let c = 0; c < 3; c++) {
-      if (
-        board[0][c] == board[1][c] &&
-        board[1][c] == board[2][c] &&
-        board[0][c] != ""
-      ) {
-        for (let i = 0; i < 3; i++) {
-          let tile = document.getElementById(i.toString() + "-" + c.toString());
-          tile.classList.add("winner");
-        }
-        gameOver = true;
-        return;
-      }
-    }
+if (currPlayer == "X") {
+  currPlayer = "O";
+} else {
+  currPlayer = "X";
+}
+}
 
-    //diagonal
-    if (
-      board[0][0] == board[1][1] &&
-      board[1][1] == board[2][2] &&
-      board[0][0] != ""
-    ) {
-      for (let i = 0; i < 3; i++) {
-        let tile = document.getElementById(i.toString() + "-" + i.toString());
-        tile.classList.add("winner");
-      }
-      gameOver = true;
-      return;
-    }
+function checkWin() {
 
-    //reverse diagonal
-    if (
-      board[0][2] == board[1][1] &&
-      board[1][1] == board[2][0] &&
-      board[0][2] != ""
-    ) {
-      let tile = document.getElementById("0-2");
-      tile.classList.add("winner");
+  let checker = players[currPlayer].print;
 
-      tile = document.getElementById("1-1");
-      tile.classList.add("winner");
+if (
+  (board[0] == checker && board[1] == checker && board[2] == checker) ||
+    (board[3] == checker && board[4] == checker && board[5] == checker) ||
+    (board[6] == checker && board[7] == checker && board[8] == checker) ||
+    (board[0] == checker && board[3] == checker && board[6] == checker) ||
+    (board[1] == checker && board[4] == checker && board[7] == checker) ||
+    (board[2] == checker && board[5] == checker && board[8] == checker) ||
+    (board[0] == checker && board[4] == checker && board[8] == checker) ||
+    (board[2] == checker && board[4] == checker && board[6] == checker)
+) {
+end()
+}
+}
 
-      tile = document.getElementById("2-0");
-      tile.classList.add("winner");
-
-      gameOver = true;
-      return;
-    }
-
-  }
-
+function end() {
+alert(`${players[currPlayer].name} is the winner!`)
 }
