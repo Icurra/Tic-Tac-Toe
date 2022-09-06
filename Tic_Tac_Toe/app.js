@@ -93,5 +93,8 @@ end()
 }
 
 function end() {
-alert(`${players[currPlayer].name} is the winner!`)
+if (p1Turn.value) {alert(`${players[currPlayer].name} is the winner!`)
+} else {
+  alert(`$`)
+}
 }
